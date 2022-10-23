@@ -1,6 +1,6 @@
 # mzChain
 
-**mzChain** is a blockchain developed in c**#** and **dotnet core**.
+**mzChain** is a blockchain developed in **c#** and **dotnet core**.
 
 
 # Project Structure
