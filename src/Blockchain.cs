@@ -7,7 +7,7 @@ namespace mzChain
     class Blockchain
     {
         List<Block> chain;
-        const int difficulty = 4;
+        const int difficulty = 5;
         public Blockchain()
         {
             this.chain = new List<Block>();

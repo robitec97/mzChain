@@ -23,7 +23,7 @@ namespace mzChain
         public void Mine(int difficulty)
         {
             string targetZeros = new string('0', difficulty);
-            while (this.Hash == null || Convert.ToBase64String(Hash).Substring(0, difficulty) != targetZeros)
+            while (this.Hash == null || BitConverter.ToString(Hash).Replace("-","").Substring(0, difficulty) != targetZeros)
             {
                 this.Nonce++;
                 this.Hash = CalculateHash();
@@ -44,9 +44,10 @@ namespace mzChain
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Hash: " + Convert.ToBase64String(Hash));
+            sb.AppendLine("------------BLOCK--------------");
+            sb.AppendLine("Hash: " + BitConverter.ToString(Hash).Replace("-","").ToLower());
             sb.AppendLine("Data: " + Encoding.ASCII.GetString(Data));
-            sb.AppendLine("Previous Hash: " + Convert.ToBase64String(PreviousHash));
+            sb.AppendLine("Previous Hash: " + BitConverter.ToString(PreviousHash).Replace("-","").ToLower());
             sb.AppendLine("Nonce: " + Nonce);
             return sb.ToString();
         }
