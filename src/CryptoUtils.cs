@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using Org.BouncyCastle.Crypto.Digests;
 
 namespace mzChain
 {
@@ -16,10 +17,14 @@ namespace mzChain
         
         public static byte[] ComputeRipeMd160Hash(byte[] data)
         {
-            using (RIPEMD160 ripemd160 = RIPEMD160.Create())
-            {
-                return ripemd160.ComputeHash(data);
-            }
+            // Using BouncyCastle for RIPEMD160 implementation
+            RipeMD160Digest digest = new RipeMD160Digest();
+            byte[] output = new byte[20]; // RIPEMD160 produces a 20-byte hash
+            
+            digest.BlockUpdate(data, 0, data.Length);
+            digest.DoFinal(output, 0);
+            
+            return output;
         }
         
         public static string BytesToHex(byte[] bytes, bool withDashes = false)

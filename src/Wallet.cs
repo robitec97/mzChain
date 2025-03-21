@@ -6,9 +6,9 @@ namespace mzChain
 {
     public class Wallet
     {
-        public byte[] PrivateKey { get; }
-        public byte[] PublicKey { get; }
-        public string Address { get; }
+        public byte[] PrivateKey { get; private set; }
+        public byte[] PublicKey { get; private set; }
+        public string Address { get; private set; }
         
         public Wallet()
         {
@@ -62,7 +62,7 @@ namespace mzChain
             foreach (Block block in blockchain.GetBlocks())
             {
                 // Parse transactions from block data
-                List<Transaction> transactions = block.GetTransactions();
+                System.Collections.Generic.List<Transaction> transactions = block.GetTransactions();
                 
                 foreach (Transaction transaction in transactions)
                 {
